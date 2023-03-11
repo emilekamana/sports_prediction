@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sport Prediction Model</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='style/index.css')}}"
+    />
+  </head>
+  <body>
+    <h1>ML Sport model prediction</h1>
+
+    <!-- 
+
+      ['movement_reactions', 'mentality_composure', 'passing', 
+      'potential', 'dribbling', 'wage_eur', 'power_shot_power', '
+      value_eur', 'lcm', 'rcm', 'cm', 'release_clause_eur', 
+      'mentality_vision', 'attacking_short_passing']
+     -->
+    <p class="prediction">{{prediction_text}}</p>
+    <form action="{{url_for('predict')}}" method="post" class="container">
+      <input
+        type="number"
+        name="movement_reactions"
+        placeholder="movement reactions"
+        required
+        step="any"
+      /><br />
+      <input
+        type="number"
+        name="mentality_composure"
+        placeholder="mentality composure"
+        step="any"
+        required
+      /><br />
+      <input
+        type="number"
+        name="passing"
+        placeholder="passing"
+        step="any"
+        required
+      /><br />
+      <input
+        type="number"
+        name="potential"
+        placeholder="potential"
+        step="any"
+        required
+      /><br />
+      <input
+        type="number"
+        name="dribbling"
+        placeholder="dribbling"
+        step="any"
+        required
+      /><br />
+      <input
+        type="number"
+        name="wage_eur"
+        placeholder="wage eur"
+        step="any"
+        required
+      /><br />
+      <input
+        type="number"
+        name="power_shot_power"
+        placeholder="power shot power"
+        step="any"
+        required
+      /><br />
+      <input
+        type="number"
+        name="value_eur"
+        placeholder="value eur"
+        step="any"
+        required
+      /><br />
+      <input
+        type="number"
+        name="lcm"
+        placeholder="lcm"
+        required
+        step="any"
+      /><br />
+      <input
+        type="number"
+        name="rcm"
+        placeholder="rcm"
+        required
+        step="any"
+      /><br />
+      <input
+        type="number"
+        name="cm"
+        placeholder="cm"
+        required
+        step="any"
+      /><br />
+      <input
+        type="number"
+        name="release_clause_eur"
+        placeholder="release clause eur"
+        step="any"
+        required
+      /><br />
+      <input
+        type="number"
+        name="mentality_vision"
+        placeholder="mentality vision"
+        step="any"
+        required
+      /><br />
+      <input
+        type="number"
+        name="attacking_short_passing"
+        placeholder="attacking_short_passing"
+        step="any"
+        required
+      /><br />
+      <button type="submit">Predict</button>
+    </form>
+  </body>
+</html>

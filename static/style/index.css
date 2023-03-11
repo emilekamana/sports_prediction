@@ -1,0 +1,41 @@
+body {
+  font-size: 20px;
+}
+
+h1 {
+  color: #ff1843;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 50%;
+  height: 30px;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px #c4c4c4 solid;
+}
+
+button {
+  width: 52%;
+  height: fit-content;
+  margin-top: 20px;
+  padding: 20px;
+  background: linear-gradient(286.17deg, #ff1843 0%, #ff7e95 100%);
+  font-size: 22px;
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
+.prediction {
+  color: #ff1843;
+  text-align: center;
+}
