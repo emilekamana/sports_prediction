@@ -1,34 +1,38 @@
-from flask import Flask, render_template, url_for, request
-import numpy as np
+# import os
+from zipfile import ZipFile
 import pickle
-import pandas as pd
+import streamlit as st
 
-app = Flask(__name__)
+with ZipFile('model.zip', 'r') as zip:
+    model_pkl = zip.read('model.pkl')
 
-model = pickle.load(open("model.pkl", "rb"))
+model = pickle.loads(model_pkl)
+# model_decomp = gzip.decompress(model_zip)
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+# pickle.dump(model, bz2.BZ2File("compressed_model.pkl",'wb'))
 
+# pickle.dump(model,c_model)
 
-@app.route("/predict", methods=['POST'])
-def predict():
-    print(np.version.version)
-    print(pickle.format_version)
-    features = [[x] for x in request.form.values()]
-    # final_features = [np.array(features)]
-    col_names =  ['movement_reactions', 'mentality_composure', 'passing', 
-      'potential', 'dribbling', 'wage_eur', 'power_shot_power', 'value_eur', 'lcm', 'rcm', 'cm', 'release_clause_eur', 
-      'mentality_vision', 'attacking_short_passing']
-    ##col_names = np.array(['movement_reactions', 'mentality_composure', 'passing', 'potential', 'dribbling', 'wage_eur', 'power_shot_power', 'value_eur'])
-    mapping = dict(zip(col_names, features))
-    print(mapping)
-    df_X = pd.DataFrame(data=mapping)
-    print(df_X)
-    prediction = model.predict(df_X)
-    predicted_value = round(prediction[0], 2)
-    return render_template("index.html", prediction_text="Player rating is {}".format(predicted_value))
+# c_model.close()
 
-if __name__ == "main":
-    app.run(debug=True)
+# print(os.path.getsize("compressed_model.pkl"))
+
+# model = get_local_pkl_file()
+
+st.title('Sports Prediction')
+
+col_names =  ['movement_reactions', 'mentality_composure', 'passing', 
+    'potential', 'dribbling', 'wage_eur', 'power_shot_power', 'value_eur', 'lcm', 'rcm', 'cm', 'release_clause_eur', 
+    'mentality_vision', 'attacking_short_passing']
+
+pred_cols = []
+for col in col_names:
+    pred_cols.append(st.number_input(col))
+
+# prediction code
+if st.button('Predict'):
+    print(pred_cols)
+    prediction = model.predict([pred_cols])
+
+    st.success("the overall potential {}".format(prediction))
+
